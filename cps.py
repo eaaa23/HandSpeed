@@ -69,7 +69,7 @@ def main():
             clear_screen(screen)
             draw_text(screen, LABEL_POSITION, LABEL_TEXT, LABEL_COLOR)
             for pos, num, tiptx in zip(DRAW_POSITION, cps, TIP_TEXT):
-                draw_text(screen, pos, tiptx + str(round(num)))
+                draw_text(screen, pos, tiptx + str('{:.2f}'.format(num)))
         pg.display.update()
 
 
