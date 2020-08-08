@@ -5,7 +5,7 @@ pg.init()
 
 FONT = pg.font.SysFont("Arial", 30)
 WINDOW_WIDTH = 800
-WINDOW_HEIGHT = 200
+WINDOW_HEIGHT = 600
 
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
@@ -45,7 +45,7 @@ def main():
     pg.display.update()
     while True:
         do_draw = False
-        moved_mouse = False
+        moved_mouse = [False, False]
         for evt in pg.event.get():
             if evt.type == QUIT:
                 pg.quit()
@@ -59,9 +59,9 @@ def main():
                     cps[key] = 1 / (this_press[key] - last_press[key])
                     last_press[key] = this_press[key]
                     do_draw = True
-                    moved_mouse = True
-        if not moved_mouse:
-            for key in range(2):
+                    moved_mouse[key] = True
+        for key in range(2):
+            if not moved_mouse[key]:
                 if time()-last_press[key] > FLASH_INTERVAL:
                     cps[key] = 0
                     do_draw = True
